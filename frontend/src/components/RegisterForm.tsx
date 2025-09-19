@@ -1,34 +1,14 @@
 import React, { useState } from "react";
+import InputField from "./InputField";
 
-interface RegisterFormProps {
-  onSubmit: (data: RegisterFormData) => void;
-}
-
-interface RegisterFormData {
+export interface RegisterFormData {
   name: string;
   email: string;
   password: string;
 }
 
-function InputField({
-  id,
-  label,
-  type,
-  value,
-  onChange,
-}: {
-  id: string;
-  label: string;
-  type: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
-  return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <input id={id} name={id} type={type} value={value} onChange={onChange} />
-    </div>
-  );
+interface RegisterFormProps {
+  onSubmit: (data: RegisterFormData) => void;
 }
 
 export default function RegisterForm({ onSubmit }: RegisterFormProps) {
@@ -42,8 +22,14 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const isValid =
+    formData.name.trim() !== "" &&
+    formData.email.trim() !== "" &&
+    formData.password.trim() !== "";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isValid) return;
     onSubmit(formData);
   };
 
@@ -55,26 +41,30 @@ export default function RegisterForm({ onSubmit }: RegisterFormProps) {
         type="text"
         value={formData.name}
         onChange={handleChange}
+        required
       />
-
       <InputField
         id="email"
         label="Email"
         type="email"
         value={formData.email}
         onChange={handleChange}
+        required
       />
-
       <InputField
         id="password"
         label="Password"
         type="password"
         value={formData.password}
         onChange={handleChange}
+        required
       />
-
-      <button type="submit">Register</button>
+      <button type="submit" disabled={!isValid}>
+        Register
+      </button>
     </form>
   );
 }
+
+
 

@@ -25,3 +25,26 @@ test("submits form with name, email, and password", () => {
     password: "secret",
   });
 });
+
+test("button is disabled if fields are empty", () => {
+  const handleSubmit = jest.fn();
+  render(<RegisterForm onSubmit={handleSubmit} />);
+
+  expect(screen.getByRole("button", { name: /register/i })).toBeDisabled();
+});
+
+test("does not submit if fields are empty", () => {
+  const handleSubmit = jest.fn();
+  render(<RegisterForm onSubmit={handleSubmit} />);
+
+  fireEvent.click(screen.getByRole("button", { name: /register/i }));
+  expect(handleSubmit).not.toHaveBeenCalled();
+});
+
+test("password input is type password", () => {
+  render(<RegisterForm onSubmit={() => {}} />);
+  expect(screen.getByLabelText(/password/i)).toHaveAttribute(
+    "type",
+    "password"
+  );
+});
