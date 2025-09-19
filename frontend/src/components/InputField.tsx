@@ -21,7 +21,7 @@ export default function InputField({
     <div className="mb-4">
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-gray-700 mb-1"
+        className="block text-sm font-medium text-gray-600 mb-1"
       >
         {label}
       </label>
@@ -32,8 +32,8 @@ export default function InputField({
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm 
-                   focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full px-4 py-2 border border-pink-200 rounded-xl shadow-sm 
+                   focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
     </div>
   );

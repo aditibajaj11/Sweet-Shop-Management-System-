@@ -2,6 +2,7 @@ import { useState } from 'react'
 import RegisterForm, { RegisterFormData } from "./components/RegisterForm";
 
 
+
 function App() {
 const handleRegister = (data: RegisterFormData) => {
     console.log("Form submitted:", data);
@@ -12,6 +13,8 @@ const handleRegister = (data: RegisterFormData) => {
      <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <RegisterForm onSubmit={handleRegister} />
     </div>
+   
+
  
   )
 }
