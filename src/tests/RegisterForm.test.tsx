@@ -1,15 +1,27 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
+import RegisterForm from "../components/RegisterForm";
 
-function RegisterForm() {
-  return null; // not implemented yet
-}
+test("submits form with name, email, and password", () => {
+  const handleSubmit = jest.fn();
+  render(<RegisterForm onSubmit={handleSubmit} />);
 
-test("renders registration form with name, email, password and submit button", () => {
-  render(<RegisterForm />);
-  expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-  expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
-  expect(screen.getByRole("button", { name: /register/i })).toBeInTheDocument();
+  fireEvent.change(screen.getByLabelText(/name/i), {
+    target: { value: "Aditi" },
+  });
+  fireEvent.change(screen.getByLabelText(/email/i), {
+    target: { value: "aditi@example.com" },
+  });
+  fireEvent.change(screen.getByLabelText(/password/i), {
+    target: { value: "secret" },
+  });
+
+  fireEvent.click(screen.getByRole("button", { name: /register/i }));
+
+  expect(handleSubmit).toHaveBeenCalledWith({
+    name: "Aditi",
+    email: "aditi@example.com",
+    password: "secret",
+  });
 });
