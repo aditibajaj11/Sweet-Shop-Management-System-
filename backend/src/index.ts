@@ -12,7 +12,8 @@ dotenv.config();
 export const app: Application = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: 'https://sweet-shop-management-system-two.vercel.app'
+
 }));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
