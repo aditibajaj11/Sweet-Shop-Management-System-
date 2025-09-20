@@ -10,6 +10,7 @@ function App() {
 
   return (
     <Routes>
+       <Route path="/" element={<Navigate to="/register" replace />} />
       
       <Route
         path="/register"
@@ -66,7 +67,7 @@ function App() {
       />
 
       
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/register" replace />} />
     </Routes>
   );
 }
