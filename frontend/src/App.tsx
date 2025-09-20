@@ -41,7 +41,10 @@ function App() {
                 console.log("Login response:", res);
                 if (res.token) {
                   localStorage.setItem("token", res.token);
-                  navigate("/dashboard"); // redirect to dashboard
+                  if (res.user?.role) {
+                    localStorage.setItem("role", res.user.role);
+                  }
+                  navigate("/dashboard"); 
                 }
 
 ;
@@ -52,6 +55,7 @@ function App() {
           />
         }
       />
+    
       <Route
         path="/dashboard"
         element={
