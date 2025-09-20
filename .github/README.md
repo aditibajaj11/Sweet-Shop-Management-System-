@@ -129,4 +129,4 @@ Commit history clearly documents AI-assisted commits with Co-authored-by trailer
 Deployment
 
 Frontend: Vercel
-Backend: Render 
+Backend: Render (https://sweet-shop-management-system-sgmt.onrender.com/)
