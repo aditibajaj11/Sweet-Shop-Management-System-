@@ -32,7 +32,11 @@ export const registerUser = async (req: Request, res: Response) => {
       { expiresIn: "1h" }
     );
 
-    res.status(201).json({ token });
+    res.status(201).json({ token , user: {
+    id: newUser._id,
+    email: newUser.email,
+    role: newUser.role,
+  },});
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -54,7 +58,11 @@ export const loginUser = async (req: Request, res: Response) => {
       { expiresIn: "1h" }
     );
 
-    res.json({ token });
+    res.json({ token,user: {
+     id: user._id,
+    email: user.email,
+    role: user.role
+  }, });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
